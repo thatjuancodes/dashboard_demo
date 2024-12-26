@@ -1,0 +1,30 @@
+%div.container.mt-5
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        = form_with url: root_path, method: :get, local: true do |form|
+          %div.row.mb-3
+            %div.col-6.offset-6
+              .form-group
+                = form.text_field :filter, class: "form-control", value: params[:filter], placeholder: "Type and hit enter to filter"
+    %thead.table-primary.border-0
+      %tr
+        %th #
+        %th
+          = link_to "First Name", root_path(sort: 'first_name', direction: params[:direction] == 'asc' ? 'desc' : 'asc', filter: params[:filter])
+          = params[:sort] == 'first_name' ? (params[:direction] == 'asc' ? '⬆️' : '⬇️') : ''
+        %th
+          = link_to "Last Name", root_path(sort: 'last_name', direction: params[:direction] == 'asc' ? 'desc' : 'asc', filter: params[:filter])
+          = params[:sort] == 'last_name' ? (params[:direction] == 'asc' ? '⬆️' : '⬇️') : ''
+        %th
+          = link_to "Email", root_path(sort: 'email', direction: params[:direction] == 'asc' ? 'desc' : 'asc', filter: params[:filter])
+          = params[:sort] == 'email' ? (params[:direction] == 'asc' ? '⬆️' : '⬇️') : ''
+        %th Phone
+    %tbody.table-bordered.border-top-0
+      - @users.each_with_index do |user, index|
+        %tr
+          %td= index + 1
+          %td= user[:first_name]
+          %td= user[:last_name]
+          %td= user[:email]
+          %td= user[:phone]

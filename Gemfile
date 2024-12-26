@@ -16,6 +16,15 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+# Use HAML as the templating engine for Rails views [https://github.com/haml/haml-rails]
+gem 'haml-rails'
+# Use bootstrap and sassc-rails for styling the application [https://getbootstrap.com]
+gem 'bootstrap', '~> 5.1.3'
+gem 'sassc-rails'
+# Use sprocket for asset management
+gem 'sprockets', '~> 4.0'
+# Use pagy for pagination [https://ddnexus.github.io/pagy/]
+gem 'pagy'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
