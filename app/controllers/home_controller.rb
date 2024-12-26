@@ -26,5 +26,7 @@ class HomeController < ApplicationController
       @users = @users.sort_by { |user| user[params[:sort].to_sym] }
       @users.reverse! if params[:direction] == "desc"
     end
+
+    @pagy, @users = pagy_array(@users, limit: 5)
   end
 end

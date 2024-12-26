@@ -28,3 +28,5 @@
           %td= user[:last_name]
           %td= user[:email]
           %td= user[:phone]
+  %div.pager.float-end
+    = pagy_bootstrap_nav(@pagy).html_safe

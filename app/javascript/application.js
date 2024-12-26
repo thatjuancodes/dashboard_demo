@@ -3,3 +3,4 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 //= require_tree .
+//= require pagy/extras/pagy.js
