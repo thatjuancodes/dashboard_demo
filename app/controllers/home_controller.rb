@@ -24,7 +24,7 @@ class HomeController < ApplicationController
 
     if params[:sort].present?
       @users = @users.sort_by { |user| user[params[:sort].to_sym] }
-      @users.reverse! if params[:direction] == 'desc'
+      @users.reverse! if params[:direction] == "desc"
     end
   end
 end
