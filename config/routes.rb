@@ -11,4 +11,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+  get 'home/export', to: 'home#export', as: 'export_home'
 end

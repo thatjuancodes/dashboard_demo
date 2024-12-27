@@ -1,6 +1,32 @@
 class HomeController < ApplicationController
+  require 'axlsx'
+  
   def index
-    @users = [
+    @users = fetch_users
+
+    @pagy, @users = pagy_array(@users, limit: 10)
+  end
+
+  def export
+    @users = fetch_users
+
+    p = Axlsx::Package.new
+    wb = p.workbook
+
+    wb.add_worksheet(name: "Users") do |sheet|
+      sheet.add_row ["First Name", "Last Name", "Email", "Phone", "Status"]
+      @users.each do |user|
+        sheet.add_row [user[:first_name], user[:last_name], user[:email], user[:phone], user[:status] ? 'accepted' : '']
+      end
+    end
+
+    send_data p.to_stream.read, filename: "users.xlsx", type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  end
+
+  private
+
+  def fetch_users
+    users = [
       { first_name: "Alice", last_name: "Schtark", email: "alice@example.com", phone: "9814729142", status: true },
       { first_name: "Bob", last_name: "Denboe", email: "bob@example.com", phone: "9814729242", status: false },
       { first_name: "Charlie", last_name: "Tarkis", email: "charlie@example.com", phone: "9814259142", status: true  },
@@ -36,7 +62,7 @@ class HomeController < ApplicationController
 
     if params[:filter].present?
       filter = params[:filter].downcase
-      @users = @users.select do |user|
+      users = users.select do |user|
         user[:first_name].downcase.include?(filter) ||
         user[:last_name].downcase.include?(filter) ||
         user[:email].downcase.include?(filter)
@@ -44,10 +70,10 @@ class HomeController < ApplicationController
     end
 
     if params[:sort].present?
-      @users = @users.sort_by { |user| user[params[:sort].to_sym] }
-      @users.reverse! if params[:direction] == "desc"
+      users = users.sort_by { |user| user[params[:sort].to_sym] }
+      users.reverse! if params[:direction] == "desc"
     end
 
-    @pagy, @users = pagy_array(@users, limit: 10)
+    users
   end
 end

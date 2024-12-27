@@ -25,6 +25,8 @@ gem "sassc-rails"
 gem "sprockets", "~> 4.0"
 # Use pagy for pagination [https://ddnexus.github.io/pagy/]
 gem "pagy"
+# Use axlsx for Excel export
+gem 'axlsx_rails'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
