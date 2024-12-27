@@ -10,7 +10,28 @@ class HomeController < ApplicationController
       { first_name: "Grace", last_name: "Davis", email: "grace@example.com", phone: "9814729642", status: false  },
       { first_name: "Hank", last_name: "Miller", email: "hank@example.com", phone: "9814729742", status: true  },
       { first_name: "Ivy", last_name: "Wilson", email: "ivy@example.com", phone: "9814729842", status: true  },
-      { first_name: "Jack", last_name: "Moore", email: "jack@example.com", phone: "9814729942", status: true  }
+      { first_name: "Jack", last_name: "Moore", email: "jack@example.com", phone: "9814729942", status: true  },
+      { first_name: "Karen", last_name: "White", email: "karen@example.com", phone: "9814730042", status: false },
+      { first_name: "Leo", last_name: "Green", email: "leo@example.com", phone: "9814730142", status: true },
+      { first_name: "Mia", last_name: "Hall", email: "mia@example.com", phone: "9814730242", status: false },
+      { first_name: "Nina", last_name: "King", email: "nina@example.com", phone: "9814730342", status: true },
+      { first_name: "Oscar", last_name: "Scott", email: "oscar@example.com", phone: "9814730442", status: true },
+      { first_name: "Paul", last_name: "Young", email: "paul@example.com", phone: "9814730542", status: false },
+      { first_name: "Quinn", last_name: "Adams", email: "quinn@example.com", phone: "9814730642", status: true },
+      { first_name: "Rachel", last_name: "Baker", email: "rachel@example.com", phone: "9814730742", status: false },
+      { first_name: "Sam", last_name: "Clark", email: "sam@example.com", phone: "9814730842", status: true },
+      { first_name: "Tina", last_name: "Evans", email: "tina@example.com", phone: "9814730942", status: true },
+      { first_name: "Uma", last_name: "Foster", email: "uma@example.com", phone: "9814731042", status: false },
+      { first_name: "Victor", last_name: "Garcia", email: "victor@example.com", phone: "9814731142", status: true },
+      { first_name: "Wendy", last_name: "Harris", email: "wendy@example.com", phone: "9814731242", status: false },
+      { first_name: "Xander", last_name: "Irwin", email: "xander@example.com", phone: "9814731342", status: true },
+      { first_name: "Yara", last_name: "Jackson", email: "yara@example.com", phone: "9814731442", status: true },
+      { first_name: "Zane", last_name: "Klein", email: "zane@example.com", phone: "9814731542", status: false },
+      { first_name: "Amy", last_name: "Lopez", email: "amy@example.com", phone: "9814731642", status: true },
+      { first_name: "Brian", last_name: "Martinez", email: "brian@example.com", phone: "9814731742", status: false },
+      { first_name: "Cathy", last_name: "Nelson", email: "cathy@example.com", phone: "9814731842", status: true },
+      { first_name: "Derek", last_name: "Olsen", email: "derek@example.com", phone: "9814731942", status: true },
+      { first_name: "Ella", last_name: "Perez", email: "ella@example.com", phone: "9814732042", status: false }
     ]
 
     if params[:filter].present?
@@ -27,6 +48,6 @@ class HomeController < ApplicationController
       @users.reverse! if params[:direction] == "desc"
     end
 
-    @pagy, @users = pagy_array(@users, limit: 5)
+    @pagy, @users = pagy_array(@users, limit: 10)
   end
 end
