@@ -2,13 +2,13 @@ class HomeController < ApplicationController
   require 'axlsx'
   
   def index
-    @users = fetch_users
+    @users = fetch_users(params[:filter], params[:sort], params[:direction])
 
     @pagy, @users = pagy_array(@users, limit: 10)
   end
 
   def export
-    @users = fetch_users
+    @users = fetch_users(params[:filter], params[:sort], params[:direction])
 
     p = Axlsx::Package.new
     wb = p.workbook
@@ -25,7 +25,7 @@ class HomeController < ApplicationController
 
   private
 
-  def fetch_users
+  def fetch_users(filter = nil, sort = nil, direction = nil)
     users = [
       { first_name: "Alice", last_name: "Schtark", email: "alice@example.com", phone: "9814729142", status: true },
       { first_name: "Bob", last_name: "Denboe", email: "bob@example.com", phone: "9814729242", status: false },

@@ -5,7 +5,7 @@
         = form_with url: root_path, method: :get, local: true do |form|
           %div.row.mb-3
             %div.col-6
-              %a{href: "/home/export", class: "btn btn-primary"} Download Excel
+              %a{href: "/home/export?filter=#{params[:filter]}&sort=#{params[:sort]}&direction=#{params[:direction]}", class: "btn btn-primary"} Download Excel
             %div.col-6
               .form-group
                 = form.text_field :filter, class: "form-control", value: params[:filter], placeholder: "Type and hit enter to filter"
