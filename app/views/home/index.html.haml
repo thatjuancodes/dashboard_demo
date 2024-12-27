@@ -20,6 +20,7 @@
           = link_to "Email", root_path(sort: 'email', direction: params[:direction] == 'asc' ? 'desc' : 'asc', filter: params[:filter])
           = params[:sort] == 'email' ? (params[:direction] == 'asc' ? '⬆️' : '⬇️') : ''
         %th Phone
+        %th.text-center RSVP
     %tbody.table-bordered.border-top-0
       - @users.each_with_index do |user, index|
         %tr{ data: { bs_toggle: "offcanvas", bs_target: "#offcanvasUser", user: user.to_json } }
@@ -28,6 +29,7 @@
           %td= user[:last_name]
           %td= user[:email]
           %td= user[:phone]
+          %td.text-center= user[:status] ? '✅' : '❌'
   %div.pager.float-end
     = pagy_bootstrap_nav(@pagy).html_safe
 
@@ -48,7 +50,7 @@
       row.addEventListener('click', function() {
         var user = JSON.parse(this.dataset.user);
         document.getElementById('offcanvasUserLabel').innerText = user.first_name + ' ' + user.last_name;
-        document.getElementById('offcanvasContent').innerText = 'Email: ' + user.email + '\nPhone: ' + user.phone;
+        document.getElementById('offcanvasContent').innerText = 'Email: ' + user.email + '\nPhone: ' + user.phone + '\nRSVP: ' + (user.status ? '✅' : '❌');
         
         offcanvas.show();
       });
