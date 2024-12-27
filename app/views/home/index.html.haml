@@ -23,7 +23,7 @@
           = link_to "Email", root_path(sort: 'email', direction: params[:direction] == 'asc' ? 'desc' : 'asc', filter: params[:filter])
           = params[:sort] == 'email' ? (params[:direction] == 'asc' ? '⬆️' : '⬇️') : ''
         %th Phone
-        %th.text-center RSVP
+        %th.text-center Status
     %tbody.table-bordered.border-top-0
       - @users.each_with_index do |user, index|
         %tr{ data: { bs_toggle: "offcanvas", bs_target: "#offcanvasUser", user: user.to_json } }
