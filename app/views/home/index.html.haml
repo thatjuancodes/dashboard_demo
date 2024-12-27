@@ -1,12 +1,12 @@
 %div.container.mt-5
-  %table.table.table-striped.table-hover
+  %table.table.table-striped.table-hover.table-data
     %thead
       %tr
         = form_with url: root_path, method: :get, local: true do |form|
           %div.row.mb-3
             %div.col-6
-              %a{href: "/home/export?filter=#{params[:filter]}&sort=#{params[:sort]}&direction=#{params[:direction]}", class: "btn btn-primary btn-sm px-4 py-1"} Export Data
-              %a{href: root_path, class: "btn btn-secondary btn-sm px-4 py-1"} Clear Filters
+              %a{href: "/home/export?filter=#{params[:filter]}&sort=#{params[:sort]}&direction=#{params[:direction]}", class: "btn btn-primary btn-sm px-4 py-2"} Export Data
+              %a{href: root_path, class: "btn btn-secondary btn-sm px-4 py-2"} Clear Filters
             %div.col-6
               .form-group
                 = form.text_field :filter, class: "form-control", value: params[:filter], placeholder: "Type and hit enter to filter"
