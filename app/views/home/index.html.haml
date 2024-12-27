@@ -22,7 +22,7 @@
         %th Phone
     %tbody.table-bordered.border-top-0
       - @users.each_with_index do |user, index|
-        %tr
+        %tr{ data: { bs_toggle: "offcanvas", bs_target: "#offcanvasUser", user: user.to_json } }
           %td= index + 1
           %td= user[:first_name]
           %td= user[:last_name]
@@ -30,3 +30,27 @@
           %td= user[:phone]
   %div.pager.float-end
     = pagy_bootstrap_nav(@pagy).html_safe
+
+// Offcanvas structure
+%div.offcanvas.offcanvas-end{ id: "offcanvasUser", tabindex: "-1", "aria-labelledby" => "offcanvasUserLabel" }
+  %div.offcanvas-header
+    %h5#offcanvasUserLabel Offcanvas
+    %button.btn-close{ type: "button", "data-bs-dismiss" => "offcanvas", "aria-label" => "Close" }
+  %div.offcanvas-body
+    %p#offcanvasContent
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    var offcanvasElement = document.getElementById('offcanvasUser');
+    var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+
+    document.querySelectorAll('tr[data-bs-toggle="offcanvas"]').forEach(function(row) {
+      row.addEventListener('click', function() {
+        var user = JSON.parse(this.dataset.user);
+        document.getElementById('offcanvasUserLabel').innerText = user.first_name + ' ' + user.last_name;
+        document.getElementById('offcanvasContent').innerText = 'Email: ' + user.email + '\nPhone: ' + user.phone;
+        
+        offcanvas.show();
+      });
+    });
+  });
