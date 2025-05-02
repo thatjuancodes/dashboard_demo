@@ -19,7 +19,7 @@ gem "jbuilder"
 # Use HAML as the templating engine for Rails views [https://github.com/haml/haml-rails]
 gem "haml-rails"
 # Use bootstrap and sassc-rails for styling the application [https://getbootstrap.com]
-gem "bootstrap", "~> 5.1.3"
+gem "bootstrap", "~> 5.3.3"
 gem "sassc-rails"
 # Use sprocket for asset management
 gem "sprockets", "~> 4.0"
